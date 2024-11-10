@@ -1,8 +1,10 @@
 # Ex-5-RECOGNITION-OF-THE-GRAMMAR-anb-where-n-10-USING-YACC
 RECOGNITION OF THE GRAMMAR(anb where n>=10) USING YACC
 
-## NAME: MUHAMMAD AFSHAN .A
-## REGISTERED NUMBER: 212223100035
+# DATE: 17/10/2024
+
+## NAME : Muhammad Afshan .A
+## Register Number : 212223100035
 
 # Aim:
 To write a YACC program to recognize the grammar anb where n>=10.
