@@ -2,29 +2,33 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void yyerror(char *s);
-int yylex(void);
+int yylex(void);         // Prototype for yylex function
+int yyerror(char *msg);  // Prototype for yyerror function
 %}
 
 %token A B NL
 
-%% 
-
-stmt: S NL { printf("Valid string\n"); exit(0); }
+%%
+stmt: A A A A A A A A A A S B NL {
+    printf("valid string\n");
+    exit(0);
+}
 ;
 
-S: A S B | /* Allow for empty production */
-  
-;
+S: S A
+ |
+ ;
+%%
 
-%% 
-
-void yyerror(char *s) {
-    fprintf(stderr, "Invalid string\n");
+int yyerror(char *msg)
+{
+    printf("invalid string\n");
+    exit(0);
 }
 
-int main() {
-    printf("Enter the string:");
+int main()
+{
+    printf("enter the string\n");
     yyparse();
     return 0;
 }

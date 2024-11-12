@@ -72,8 +72,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void yyerror(char *s);
-int yylex(void);
+int yylex(void);         // Prototype for yylex function
+int yyerror(char *msg);  // Prototype for yyerror function
 
 #line 79 "y.tab.c"
 
@@ -487,9 +487,9 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  5
+#define YYFINAL  4
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   5
+#define YYLAST   16
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  6
@@ -498,7 +498,7 @@ union yyalloc
 /* YYNRULES -- Number of rules.  */
 #define YYNRULES  4
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  8
+#define YYNSTATES  17
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   260
@@ -548,7 +548,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    13,    13,    16,    16
+       0,    12,    12,    18,    19
 };
 #endif
 
@@ -589,7 +589,8 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -3,    -3,     1,    -2,     0,    -4,    -4,    -4
+      -1,     0,     4,     2,    -4,     3,     5,     6,     7,     8,
+       9,    10,    -4,    -3,    -4,    11,    -4
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -597,19 +598,20 @@ static const yytype_int8 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       4,     4,     0,     0,     0,     1,     2,     3
+       0,     0,     0,     0,     1,     0,     0,     0,     0,     0,
+       0,     0,     4,     0,     3,     0,     2
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -4,    -4,     4
+      -4,    -4,    -4
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     2,     3
+       0,     2,    13
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -617,19 +619,22 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       1,     5,     0,     6,     7,     4
+      14,    15,     1,     3,     4,     5,     6,     0,     7,     8,
+       9,    10,    11,    12,     0,     0,    16
 };
 
 static const yytype_int8 yycheck[] =
 {
-       3,     0,    -1,     5,     4,     1
+       3,     4,     3,     3,     0,     3,     3,    -1,     3,     3,
+       3,     3,     3,     3,    -1,    -1,     5
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     3,     7,     8,     8,     0,     5,     4
+       0,     3,     7,     3,     0,     3,     3,     3,     3,     3,
+       3,     3,     3,     8,     3,     4,     5
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
@@ -641,7 +646,7 @@ static const yytype_int8 yyr1[] =
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     2,     3,     0
+       0,     2,    13,     2,     0
 };
 
 
@@ -1104,14 +1109,17 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2: /* stmt: S NL  */
-#line 13 "ex5.y"
-           { printf("Valid string\n"); exit(0); }
-#line 1111 "y.tab.c"
+  case 2: /* stmt: A A A A A A A A A A S B NL  */
+#line 12 "ex5.y"
+                                 {
+    printf("valid string\n");
+    exit(0);
+}
+#line 1119 "y.tab.c"
     break;
 
 
-#line 1115 "y.tab.c"
+#line 1123 "y.tab.c"
 
       default: break;
     }
@@ -1304,15 +1312,18 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 20 "ex5.y"
- 
+#line 21 "ex5.y"
 
-void yyerror(char *s) {
-    fprintf(stderr, "Invalid string\n");
+
+int yyerror(char *msg)
+{
+    printf("invalid string\n");
+    exit(0);
 }
 
-int main() {
-    printf("Enter the string:");
+int main()
+{
+    printf("enter the string\n");
     yyparse();
     return 0;
 }
